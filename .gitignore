@@ -29,6 +29,9 @@
 /public/assets
 .byebug_history
 
+#ignore db test files
+db/test.*
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
