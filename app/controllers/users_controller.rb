@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
 
   def show
-    @user = User.find(params[:id])
+    if logged_in?
+        @user = User.find(params[:id])
+    else
+      flash[:danger]="You're not allowed to navigate to the requested url"
+      redirect_to root_url
+    end
   end
   
   def new
