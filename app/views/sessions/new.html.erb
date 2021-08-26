@@ -1,0 +1,32 @@
+<% provide(:title, "Log in") %>
+<h1>Log in</h1>
+<p>
+  <% flash.each do |message_type, message| %>
+      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+  <% end %>
+</p>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    
+    
+    <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
+      <p>
+        <%= f.label :email %>
+        <br/>
+        <%= f.email_field :email, class: 'form-control' %>
+      </p>
+      <p>
+        <%= f.label :password %>
+        <br/>
+        <%= f.password_field :password, class: 'form-control' %>
+      </p>
+      <p>
+        <%= f.submit "Log in", class: "btn btn-primary" %>
+      </p>
+    <% end %>
+    
+    <p>
+      New user? <%= link_to "Sign up now!", signup_path %>
+    </p>
+  </div>
+</div>
