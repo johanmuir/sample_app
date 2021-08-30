@@ -86,6 +86,10 @@ first.last@foo.jp alice+bob@baz.cn]
     
     assert_not @user.valid?
   end
+  
+  test "authenticated? should return false for a user with nil digest" do
+    assert_not @user.authenticated?('')
+  end
   #   assert true
   # end
 end
