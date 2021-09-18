@@ -1,0 +1,25 @@
+<%= form_with(model: @user, local: true) do |f| %>
+  <p>
+    <%= f.label :name %>
+  <br/>
+    <%= f.text_field :name, class: 'form-control' %>
+  </p>
+  <p>
+    <%= f.label :email %>
+    <br/>
+    <%= f.email_field :email, class: 'form-control' %>
+  </p>
+  <p>
+    <%= f.label :password %>
+    <br/>
+    <%= f.password_field :password, class: 'form-control' %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation, "Confirmation" %>
+    <br/>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </p>
+  <p>
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  </p>
+<% end %>
