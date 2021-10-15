@@ -3,3 +3,8 @@ michael:
   name: Michael Example
   email: michael@example.com
   password_digest: <%= User.digest('password') %>
+  
+archer:
+  name: Rudolph Walters
+  email: rwalters@email.com
+  password_digest: <%= User.digest('password') %>
