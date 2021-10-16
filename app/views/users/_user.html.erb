@@ -1,10 +1,12 @@
-<li>
-    <%= gravatar_for user, size: 70 %>
-    <%= link_to user.name, user %> <br/>
-    <%= user.email %> <br/>
-    <%= user.created_at.strftime("%A %B %d, %Y") %>
-    <% if @current_user.admin? && @current_user != user %>
-        <br/>
-        <%= link_to image_tag("trash.svg", alt: "Delete", title: "Delete", width: "20"), user, method: :delete, data: {confirm: "You sure!"} %>
-    <% end %>
-  </li>
+<% unless @current_user == user %>
+    <li>
+        <%= gravatar_for user, size: 70 %>
+        <%= link_to user.name, user %> <br/>
+        <%= user.email %> <br/>
+        <%= user.created_at.strftime("%A %B %d, %Y") %>
+        <% if @current_user.admin? %>
+            <br/>
+            <%= link_to image_tag("trash.svg", alt: "Delete", title: "Delete", width: "20"), user, method: :delete, data: {confirm: "You sure!"} %>
+        <% end %>
+    </li>
+<% end %>
