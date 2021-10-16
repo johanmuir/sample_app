@@ -10,8 +10,7 @@ class SessionsController < ApplicationController
       reset_session
       params[:session][:remember_me] == '1'? remember(user) : forget(user)
       log_in(user)
-      redirect_to forwarding_url || user
-      
+        redirect_to forwarding_url || user
     else
       flash.now[:danger]="Email and/or Password not found"  
       render 'new'
