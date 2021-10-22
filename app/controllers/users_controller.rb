@@ -2,16 +2,16 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :index, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:destroy]
-
       
   def index
-    @users = User.paginate(page: params[:page], per_page:20)
+    @users = User.where(activated: true).paginate(page: params[:page], per_page:20)
   end
   
   
   def show
     if logged_in?
         @user = User.find(params[:id])
+        redirect_to root_url and return unless @user.activated?
     else
       flash[:danger]="You're not allowed to navigate to the requested url"
       redirect_to root_url
@@ -26,12 +26,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     
     if @user.save
+      @user.send_activation_email
+      flash[:info]="Please check you email to activate account"
       
-      reset_session
-      log_in @user
-      flash[:success]="Welcome to the Sample App!"
-      
-      redirect_to @user
+      redirect_to root_path
       
     else
       render 'new'

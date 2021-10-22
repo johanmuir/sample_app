@@ -71,11 +71,11 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
   
   test "should not allow user to edit admin param" do
-    log_in_as(@user)
+    log_in_as(@other_user)
     
-    patch user_path(@user), params: {user: {password: "newpassord", password_confirmation: "newpassword", admin: true}}
+    patch user_path(@other_user), params: {user: {password: "newpassord", password_confirmation: "newpassword", admin: true}}
     
-    assert_not @user.reload.admin?
+    assert_not @other_user.reload.admin?
   end
   
 end
