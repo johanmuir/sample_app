@@ -1,0 +1,23 @@
+<% provide(:title, "Password Reset") %>
+<h1>Reset Your Password</h1>
+<p>
+</p>
+<%= form_with(model: @user, url: password_reset_path(params[:id]) , local: true) do |f| %>
+  
+  <%= render 'shared/error_messages' %>
+
+  <%= hidden_field_tag :email, @user.email %>
+  <p>
+    <%= f.label :password %>
+    <br/>
+    <%= f.password_field :password, class: 'form-control' %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation, "Confirmation" %>
+    <br/>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </p>
+  <p>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  </p>
+<% end %>
